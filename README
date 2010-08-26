@@ -10,7 +10,7 @@ What's differences with built-in CSS syntax in Vim:
     2. Different highlight colors for properties, value, units and so on.
 
 NOTICE:
-    DO NOT support CSS color plugin yet, I'll fix it when I free.
+    DO NOT support CSS color plugin yet, I'll fix it when I have time.
 
 Install:
     just copy css.vim to your ~/.vim/Syntax.
