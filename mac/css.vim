@@ -2,7 +2,7 @@
 " Language: Cascading Style Sheets
 " Maintainer:   Chris Yip <yesu326@gmail.com>, twitter: @Chris_Ys
 " URL:  http://www.vim.org/scripts/script.php?script_id=3183
-" GIT:  http://github.com/ChrisYs/Better-CSS-Syntax-for-Vim
+" GIT:  http://github.com/ChrisYis/Better-CSS-Syntax-for-Vim
 " Last Change:  2010/12/24
 " Full CSS2, most of HTML5 & CSS3 properties (include prefix like -moz-) supported
 
