@@ -1,19 +1,7 @@
-" Better CSS Syntax for Vim
-" Language: Cascading Style Sheets
-" Maintainer:   Chris Yip <yesu326@gmail.com, twitter: @Chris_Ys>
-" GIT:  http://github.com/ChrisYs/Better-CSS-Syntax-for-Vim
+Better CSS Syntax for Vim
 
-Make CSS more readable.
-
-What's differences with built-in CSS syntax in Vim:
-    1. Support most of HTML & CSS properties, including HTML5 & CSS3.
-    2. Different highlight colors for properties, value, units and so on.
-
-NOTICE:
-    DO NOT support CSS color plugin yet, I'll fix it when I have time.
+Highlights for full CSS2, most of HTML5 & CSS3 properties (include prefix like -moz-).
 
 Install:
     just copy css.vim to your ~/.vim/Syntax.
-    Recommeneded:
-        I wrote this script under Windows and different OS has different file formats, so do as following:
-        Create a new empty css.vim file in syntax folder, and copy this code to the new one.
+    I tried to solve the fileformat issue, saved three files with different "set fileformat", hope this works.
