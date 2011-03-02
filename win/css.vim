@@ -1,9 +1,9 @@
 " Better CSS Syntax for Vim
 " Language: Cascading Style Sheets
 " Maintainer:   Chris Yip <yesu326@gmail.com>, twitter: @Chris_Ys
-" URL:  http://www.vim.org/scripts/script.php?script_id=3183
+" URL:  http://www.vim.org/scripts/script.php?script_id=3220
 " GIT:  http://github.com/ChrisYis/Better-CSS-Syntax-for-Vim
-" Last Change:  2010/12/24
+" Last Change:  2011/3/1
 " Full CSS2, most of HTML5 & CSS3 properties (include prefix like -moz-) supported
 
 " Quit when a syntax file was already loaded
@@ -12,6 +12,25 @@ if exists("b:current_syntax")
 endif
 
 syn case ignore
+set iskeyword+=-
+
+syn region cssAtkeyword start=/@\(media\|import\)/ end=/\ze{/ contains=cssAtType, cssAtkey, cssValFn, cssValBlock
+
+syn keyword cssAtType media import contained
+syn keyword cssAtkey all braille embossed handheld print projection screen speech tty tv contained
+
+syn region cssValBlock start=/(/ end=/)/ contained contains=cssAtProps
+
+syn match cssAtProps /[^()]*/ contained contains=cssMediaProp,cssAtValBlock
+syn keyword cssMediaProp grid monochrome orientation scan contained
+syn match cssMediaProp /color\(-index\)\=\ze\s*[:)]/ contained
+syn match cssMediaProp /\(\(device\)-\)\=aspect-ratio\ze\s*[:)]/ contained
+syn match cssMediaProp /\(\(max\|min\)-\)\=device-\(height\|width\)\ze\s*[:)]/ contained
+syn match cssMediaProp /\(\(max\|min\)-\)\=\(height\|width\)\ze\s*[:)]/ contained
+
+syn region cssAtValBlock start=/:\zs/ end=/\ze[)]/ contained contains=cssAttr,cssColor,cssImportant,cssNumber,cssUnits,cssQuote,cssFunction
+
+syn region cssValFn start=/\<url\s*(/ end=/)\ze/ contained contains=cssPathFn
 
 syn match cssTagName /\*/
 syn keyword cssTagName a abbr acronym address applet area article aside audio b base basefont bdo big blockquote body br button canvas caption center cite code col colgroup command datalist dd del details dfn dir div dl dt em embed fieldset font form figcaption figure footer frame frameset h1 h2 h3 h4 h5 h6 head header hgroup hr html img i iframe img input ins isindex kbd keygen label legend li link map mark menu meta meter nav noframes noscript object ol optgroup option output p param pre progress q rp rt ruby s samp script section select small span strike strong style sub summary sup table tbody td textarea tfoot th thead time title tr tt ul u var variant video xmp
@@ -34,7 +53,7 @@ syn match cssPseudo /\:nth\(-last\)\{0,1\}-of-type([0-9]*[n]*)/
 syn match cssPseudo /\:not([#\.]\{0,\}\S\+)/
 syn match cssPseudo /\:lang([a-zA-Z]\{2\}\(-[a-zA-Z]\{2\}\)\{0,1\})\>/
 syn match cssPseudo /\:read\-\(only\|write\)\>/
-syn match cssPseudo /\:\{2\}\(after\|before\)\>/
+syn match cssPseudo /\:\{1,2\}\(after\|before\)\>/
 syn match cssPseudo /\:\{2\}selection\>/
 syn match cssPseudo /\:\{2\}value\>/
 
@@ -86,8 +105,9 @@ syn match cssAttr /\<text-\(top\|bottom\)\>/ contained
 syn match cssAttr /\<pre\(-\(wrap\|line\)\)\=\>/ contained
 syn match cssAttr /\<preserve\(-\(breaks\)\)\=\>/ contained
 
-syn keyword cssProp appearance binding bottom clear clip color columns content crop cursor direction elevation empty-cells hanging-punctuation height hyphens icon inline-box-align left letter-spacing move-to opacity orphans phonemes position play-during presentation-level punctuation-trim quotes rendering-intent resize richness right size speech-rate stress string-set tab-size table-layout top unicode-bidi vertical-align visibility volume widows width z-index zimuth contained
+syn match cssProp /\(appearance\|binding\|bottom\|clear\|clip\|color\|columns\|content\|crop\|cursor\|direction\|elevation\|empty-cells\|hanging-punctuation\|height\|hyphens\|icon\|inline-box-align\|left\|letter-spacing\|move-to\|opacity\|orphans\|phonemes\|position\|play-during\|presentation-level\|punctuation-trim\|quotes\|rendering-intent\|resize\|richness\|right\|size\|speech-rate\|stress\|string-set\|tab-size\|table-layout\|top\|unicode-bidi\|vertical-align\|visibility\|volume\|widows\|width\|z-index\|zimuth\)\ze\s*:/ contained
 
+syn match cssProp /\(\<\|\)transform\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)alignment-\(adjust\|baseline\)\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)animation\(-\(delay\|direction\|duration\|iteration-count\|name\|play-state\|timing-function\)\)\{0,1\}\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)background\(-\(attachment\|break\|clip\|color\|image\|origin\|position\|repeat\|size\)\)\{0,1\}\>\ze\s*:/ contained
@@ -134,7 +154,7 @@ syn match cssProp /\(\<\|\)word-\(break\|spacing\|wrap\)\>\ze\s*:/ contained
 
 syn match cssSelector /\[[#\.]\{0,1\}\c[-a-z0-9]\+\([*^$]\{0,1\}=\c[-a-z0-9_'"]\+\)*\]/
 
-syn match cssUnits /%\|\(cm\|deg\|dpi\|em\|ex|\in\|mm\|pc\|pt\|px\|s\)\>/ contained
+syn match cssUnits /%\|\(cm\|deg\|dpi\|dpcm\|em\|ex|\in\|mm\|pc\|pt\|px\|s\)\ze\s*[,;)}]\=/ contained
 
 syn match cssColor /#\(\x\{6\}\|\x\{3\}\)/ contained
 
@@ -142,9 +162,11 @@ syn match cssImportant /!important\>/ contained
 
 syn region cssComment start=/\/\*/ end=/\*\// contains=@Spell
 
-syn region cssFunction start=/\c[-a-z0-9@]*(/ end=/)/ contained contains=cssFile
+syn region cssFunction start=/\c[-a-z0-9@]*(/ end=/)/ contained contains=cssPathFn,cssAttValFn
 
-syn region cssFile start=/url(\zs/ end=/\ze)/ contained
+syn region cssPathFn start=/\<url\s*(\zs/ end=/\ze)/ contained
+
+syn region cssAttValFn start=/\<\(rotate\|rgba\)\s*(\zs/ end=/\ze)/ contained contains=cssNumber,cssUnits
 
 syn match cssBraket /[{}]/ contained
 
@@ -153,7 +175,18 @@ syn match cssQuote /\('.*'\|".*"\)/ contained
 " Define the default highlighting.
 command -nargs=+ HLink hi def link <args>
 
+HLink cssAtkeyword Constant
+HLink cssAtType Identifier
+HLink cssAtkey Special
+HLink cssMediaProp Type
+HLink cssAtProps Function
+
 HLink cssAttr SpecialKey
+
+HLink cssAttValFn Function
+
+HLink cssValBlock Function
+HLink cssValFn Function
 
 HLink cssAttrBlock Normal
 
@@ -167,9 +200,10 @@ HLink cssComment Comment
 
 HLink cssError ErrorMsg
 
-HLink cssFile Directory
+HLink cssPathFn Directory
 
 HLink cssFunction Function
+HLink cssFnValBlock Function
 
 HLink cssFuncRegion Function
 
