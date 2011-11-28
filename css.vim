@@ -14,7 +14,8 @@ endif
 syn case ignore
 set iskeyword+=-
 
-syn region cssAtkeyword start=/@\(media\|import\)/ end=/\ze{/ contains=cssAtType, cssAtkey, cssValFn, cssValBlock
+syn region cssAtkeyword start=/@\(media\)/ end=/\ze{/ contains=cssAtType, cssAtkey, cssValFn, cssValBlock
+syn region cssAtkeyword start=/@\(import\)/ end=/\ze[{;]/ contains=cssAtType, cssAtkey, cssValFn, cssValBlock
 
 syn keyword cssAtType media import contained
 syn keyword cssAtkey all braille embossed handheld print projection screen speech tty tv contained
@@ -154,7 +155,7 @@ syn match cssProp /\(\<\|\)word-\(break\|spacing\|wrap\)\>\ze\s*:/ contained
 
 syn match cssSelector /\[[#\.]\{0,1\}\c[-a-z0-9]\+\([*^$]\{0,1\}=\c[-a-z0-9_'"]\+\)*\]/
 
-syn match cssUnits /%\|\(cm\|deg\|dpi\|dpcm\|em\|ex|\in\|mm\|pc\|pt\|px\|s\)\ze\s*[,;)}]\=/ contained
+syn match cssUnits /%\|\(cm\|deg\|dpi\|dpcm\|r\?em\|ex|\in\|mm\|pc\|pt\|px\|s\)\ze\s*[,;)}]\=/ contained
 
 syn match cssColor /#\(\x\{6\}\|\x\{3\}\)/ contained
 
