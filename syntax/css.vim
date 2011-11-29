@@ -1,9 +1,9 @@
 " Better CSS Syntax for Vim
 " Language: Cascading Style Sheets
-" Maintainer:   Chris Yip <yesu326@gmail.com>, twitter: @Chris_Ys
+" Maintainer:   Chris Yip <yesu326@gmail.com>, twitter: @chrisyipw
 " URL:  http://www.vim.org/scripts/script.php?script_id=3220
 " GIT:  http://github.com/ChrisYis/Better-CSS-Syntax-for-Vim
-" Last Change:  2011/3/1
+" Last Update:  2011/11/29
 " Full CSS2, most of HTML5 & CSS3 properties (include prefix like -moz-) supported
 
 " Quit when a syntax file was already loaded
@@ -14,10 +14,10 @@ endif
 syn case ignore
 set iskeyword+=-
 
-syn region cssAtkeyword start=/@\(media\)/ end=/\ze{/ contains=cssAtType, cssAtkey, cssValFn, cssValBlock
-syn region cssAtkeyword start=/@\(import\)/ end=/\ze[{;]/ contains=cssAtType, cssAtkey, cssValFn, cssValBlock
+syn region cssAtkeyword start=/@\(media\|font-face\|page\|keyframes\)/ end=/\ze{/ contains=cssAtType, cssAtkey, cssPseudo, cssValFn, cssValBlock
+syn region cssAtkeyword start=/@\(import\|charset\|namespace\)/ end=/\ze;/ contains=cssAtType, cssAtkey, cssPseudo, cssValFn, cssValBlock
 
-syn keyword cssAtType media import contained
+syn keyword cssAtType media import charset font-face page keyframes namespace contained
 syn keyword cssAtkey all braille embossed handheld print projection screen speech tty tv contained
 
 syn region cssValBlock start=/(/ end=/)/ contained contains=cssAtProps
@@ -44,8 +44,8 @@ syn match cssPrefix /\(-\(webkit\|moz\|o\|ms\)-\)\|filter/
 
 syn match cssNumber /\(-\)\=\(\.\d\+\|\d\+\(\.\d\+\)\{0,\}\)/ contained
 
-syn keyword cssPseudo link visited active hover focus left right root empty target enabled disabled checked indeterminate valid invalid required
-syn match cssPseudo /\:first\-\(letter\|line\|child\)\>/
+syn match cssPseudo /\:\(child\|link\|visited\|active\|hover\|focus\|left\|right\|root\|empty\|target\|enabled\|disabled\|checked\|indeterminate\|valid\|invalid\|required\|optional\|default\)\>/
+syn match cssPseudo /\:first\-\(child\)\>/
 syn match cssPseudo /\:\{1,2\}first\-\(letter\|line\)\>/
 syn match cssPseudo /\:\(last\|only\)-child\>/
 syn match cssPseudo /\:\(first\|last\|only\)-of-type)\>/
@@ -57,6 +57,7 @@ syn match cssPseudo /\:read\-\(only\|write\)\>/
 syn match cssPseudo /\:\{1,2\}\(after\|before\)\>/
 syn match cssPseudo /\:\{2\}selection\>/
 syn match cssPseudo /\:\{2\}value\>/
+syn match cssPseudo /\:\{2\}progress-bar\>/
 
 syn region cssFuncRegion start=/{/ end=/}/ contains=cssPropRegion
 
@@ -106,9 +107,8 @@ syn match cssAttr /\<text-\(top\|bottom\)\>/ contained
 syn match cssAttr /\<pre\(-\(wrap\|line\)\)\=\>/ contained
 syn match cssAttr /\<preserve\(-\(breaks\)\)\=\>/ contained
 
-syn match cssProp /\(appearance\|binding\|bottom\|clear\|clip\|color\|columns\|content\|crop\|cursor\|direction\|elevation\|empty-cells\|hanging-punctuation\|height\|hyphens\|icon\|inline-box-align\|left\|letter-spacing\|move-to\|opacity\|orphans\|phonemes\|position\|play-during\|presentation-level\|punctuation-trim\|quotes\|rendering-intent\|resize\|richness\|right\|size\|speech-rate\|stress\|string-set\|tab-size\|table-layout\|top\|unicode-bidi\|vertical-align\|visibility\|volume\|widows\|width\|z-index\|zimuth\)\ze\s*:/ contained
+syn match cssProp /\(appearance\|backface-visibility\|binding\|bottom\|clear\|clip\|color\|columns\|content\|crop\|cursor\|direction\|elevation\|empty-cells\|hanging-punctuation\|height\|hyphens\|icon\|inline-box-align\|left\|letter-spacing\|move-to\|nbsp-mode\|opacity\|orphans\|phonemes\|position\|play-during\|presentation-level\|punctuation-trim\|quotes\|rendering-intent\|resize\|richness\|right\|size\|speech-rate\|stress\|string-set\|tab-size\|table-layout\|top\|unicode-bidi\|vertical-align\|visibility\|volume\|widows\|width\|z-index\|zimuth\)\ze\s*:/ contained
 
-syn match cssProp /\(\<\|\)transform\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)alignment-\(adjust\|baseline\)\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)animation\(-\(delay\|direction\|duration\|iteration-count\|name\|play-state\|timing-function\)\)\{0,1\}\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)background\(-\(attachment\|break\|clip\|color\|image\|origin\|position\|repeat\|size\)\)\{0,1\}\>\ze\s*:/ contained
@@ -132,9 +132,8 @@ syn match cssProp /\(\<\|\)hyphenate-\(after\|before\|character\|lines\|resource
 syn match cssProp /\(\<\|\)image-\(orientation\|resolution\)\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)line-\(height\|stacking\(-\(ruby\|shift\|strategy\)\)\=\)\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)list-style\(-\(image\|position\|type\)\)\=\>\ze\s*:/ contained
-syn match cssProp /\(\<\|\)\(margin\|padding\)\(-\(bottom\|left\|right\|top\)\)\=\>\ze\s*:/ contained
+syn match cssProp /\(\<\|\)\(margin\|padding\)\(-\(bottom\|left\|right\|start\|top\)\)\=\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)mark\(s\|-\(after\|before\)\)\=\>\ze\s*:/ contained
-syn match cssProp /\(\<\|\)marquee-\(direction\|play-count\|speed\|style\)\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)\(max\|min\)-\(height\|width\)\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)nav-\(down\|index\|left\|right\|up\)\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)outline\(-\(color\|offset\|style\|width\)\)\=\>\ze\s*:/ contained
@@ -152,6 +151,10 @@ syn match cssProp /\(\<\|\)transition\(-\(delay\|duration\|property\|timing-func
 syn match cssProp /\(\<\|\)voice-\(balance\|duration\|family\|pitch\(-range\)\=\|rate\|stress\|volume\)\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)white-space\(-collapse\)\=\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)word-\(break\|spacing\|wrap\)\>\ze\s*:/ contained
+syn match cssProp /\(\<\|\)user-\(drag\|modify\|select\)\>\ze\s*:/ contained
+syn match cssProp /\(\<\|\)marquee\(-\(direction\|play-count\|loop\|increment\|repetition\|speed\|style\)\)\>\ze\s*:/ contained
+syn match cssProp /\(\<\|\)mask\(-\(attachment\|box-image\|clip\|composite\|image\|position\|position-x\|position-y\|size\|repeat\|origin\)\)\>\ze\s*:/ contained
+syn match cssProp /\(\<\|\)transform\(-\(origin\|origin-x\|origin-y\|origin-z\|style\)\)\>\ze\s*:/ contained
 
 syn match cssSelector /\[[#\.]\{0,1\}\c[-a-z0-9]\+\([*^$]\{0,1\}=\c[-a-z0-9_'"]\+\)*\]/
 

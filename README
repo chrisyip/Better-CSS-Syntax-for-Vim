@@ -1,7 +1,0 @@
-Better CSS Syntax for Vim
-
-Highlights for full CSS2, most of HTML5 & CSS3 properties (include prefix like -moz-).
-
-Install:
-    just copy css.vim to your ~/.vim/Syntax.
-    I tried to solve the fileformat issue, saved three files with different "set fileformat", hope this works.
