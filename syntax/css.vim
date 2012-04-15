@@ -158,7 +158,7 @@ syn match cssProp /\(\<\|\)transform\(-\(origin\|origin-x\|origin-y\|origin-z\|s
 
 syn match cssSelector /\[[#\.]\{0,1\}\c[-a-z0-9]\+\([*^$]\{0,1\}=\c[-a-z0-9_'"]\+\)*\]/
 
-syn match cssUnits /%\|\(cm\|deg\|dpi\|dpcm\|r\?em\|ex|\in\|mm\|pc\|pt\|px\|s\)\ze\s*[,;)}]\=/ contained
+syn match cssUnits /\d\@<=\(%\|cm\|deg\|dpi\|dpcm\|em\|ex\|\in\|mm\|pc\|pt\|px\|s\)\ze\s*[,;)}]\=/ contained
 
 syn match cssColor /#\(\x\{6\}\|\x\{3\}\)/ contained
 
