@@ -48,7 +48,7 @@ syn match cssPseudo /\:\(child\|link\|visited\|active\|hover\|focus\|left\|right
 syn match cssPseudo /\:first\-\(child\)\>/
 syn match cssPseudo /\:\{1,2\}first\-\(letter\|line\)\>/
 syn match cssPseudo /\:\(last\|only\)-child\>/
-syn match cssPseudo /\:\(first\|last\|only\)-of-type)\>/
+syn match cssPseudo /\:\(first\|last\|only\)-of-type\>/
 syn match cssPseudo /\:nth\(-last\)\{0,1\}-child([0-9]*[n]*)/
 syn match cssPseudo /\:nth\(-last\)\{0,1\}-of-type([0-9]*[n]*)/
 syn match cssPseudo /\:not([#\.]\{0,\}\S\+)/
