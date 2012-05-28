@@ -65,7 +65,7 @@ syn match cssPropRegion /[^{}]*/ contained contains=cssProp,cssAttrBlock,cssPref
 
 syn region cssAttrBlock start=/:\zs/ end=/\ze[;}]\{1\}/ contained contains=cssAttr,cssColor,cssImportant,cssNumber,cssUnits,cssQuote,cssFunction
 
-syn keyword cssAttr above absolute accent adjacent after alias all alphabetic alternate always auto avoid balance baseline back before behind below blink block bold bolder border both bottom capitalize caption cell center central circle clear clone code collapse compact copy crop cross crosshair current dashed default digits disc discard dot dotted double embed end fast faster fill first fixed forward front hanging help here hidden hide high higher horizontal icon ideographic inherit inhibit initial invert italic justify kashida landscape last left level lighter linear loud low lower ltr mathematical manual medium meet menu middle modal move multiple moderate narrower new none normal nowrap oblique overline parent perceptual pointer portrait progress reduced relative reverse ridge right root rtl same saturation scroll separate show silent single slice slide slow slower solid soft square start static stretch strong sub super suppress tab text tibetan top underline unrestricted vertical visible wait wider window contained
+syn keyword cssAttr above absolute accent adjacent after alias all alphabetic alternate always auto avoid balance baseline back before behind below blink block bold bolder border both bottom capitalize caption cell center central circle clear clone code collapse compact copy crop cross crosshair current dashed default digits disc discard dot dotted double embed end fast faster fill first fixed forward front hanging help here hidden hide high higher horizontal icon ideographic inherit inhibit initial invert italic justify kashida landscape last left level lighter linear loud low lower ltr mathematical manual medium meet menu middle modal move multiple moderate narrower new none normal nowrap oblique overline parent perceptual pointer portrait progress reduced relative reverse ridge right root rtl same saturation scroll separate show silent single slice slide slow slower solid soft square start static stretch strong sub super suppress tab text thick thin tibetan top underline unrestricted vertical visible wait wider window contained
 
 syn match cssAttr /\<transparent\>/ contained
 
@@ -107,7 +107,7 @@ syn match cssAttr /\<text-\(top\|bottom\)\>/ contained
 syn match cssAttr /\<pre\(-\(wrap\|line\)\)\=\>/ contained
 syn match cssAttr /\<preserve\(-\(breaks\)\)\=\>/ contained
 
-syn match cssProp /\(appearance\|backface-visibility\|binding\|bottom\|clear\|clip\|color\|columns\|content\|crop\|cursor\|direction\|elevation\|empty-cells\|hanging-punctuation\|height\|hyphens\|icon\|inline-box-align\|left\|letter-spacing\|move-to\|nbsp-mode\|opacity\|orphans\|phonemes\|position\|play-during\|presentation-level\|punctuation-trim\|quotes\|rendering-intent\|resize\|richness\|right\|size\|speech-rate\|stress\|string-set\|tab-size\|table-layout\|top\|unicode-bidi\|vertical-align\|visibility\|volume\|widows\|width\|z-index\|zimuth\)\ze\s*:/ contained
+syn match cssProp /\(appearance\|backface-visibility\|binding\|bottom\|clear\|clip\|color\|columns\|content\|crop\|cursor\|direction\|elevation\|empty-cells\|hanging-punctuation\|height\|hyphens\|icon\|inline-box-align\|left\|letter-spacing\|move-to\|nbsp-mode\|opacity\|orphans\|phonemes\|position\|play-during\|presentation-level\|punctuation-trim\|quotes\|rendering-intent\|resize\|richness\|right\|size\|speech-rate\|src\|stress\|string-set\|tab-size\|table-layout\|top\|unicode-bidi\|vertical-align\|visibility\|volume\|widows\|width\|z-index\|zimuth\)\ze\s*:/ contained
 
 syn match cssProp /\(\<\|\)alignment-\(adjust\|baseline\)\>\ze\s*:/ contained
 syn match cssProp /\(\<\|\)animation\(-\(delay\|direction\|duration\|iteration-count\|name\|play-state\|timing-function\)\)\{0,1\}\>\ze\s*:/ contained
@@ -168,9 +168,9 @@ syn region cssComment start=/\/\*/ end=/\*\// contains=@Spell
 
 syn region cssFunction start=/\c[-a-z0-9@]*(/ end=/)/ contained contains=cssPathFn,cssAttValFn
 
-syn region cssPathFn start=/\<url\s*(\zs/ end=/\ze)/ contained
+syn region cssPathFn start=/\<\(url\|format\)\s*(\zs/ end=/\ze)/ contained
 
-syn region cssAttValFn start=/\<\(rotate\|rgba\)\s*(\zs/ end=/\ze)/ contained contains=cssNumber,cssUnits
+syn region cssAttValFn start=/\<\(rotate\|rgba\|rgb\|hsl\|hsla\)\s*(\zs/ end=/\ze)/ contained contains=cssNumber,cssUnits
 
 syn match cssBraket /[{}]/ contained
 
