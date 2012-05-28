@@ -1,9 +1,9 @@
 " Better CSS Syntax for Vim
 " Language: Cascading Style Sheets
-" Maintainer:   Chris Yip <yesu326@gmail.com>, twitter: @chrisyipw
+" Maintainer:   Chris Yip <chrisyipw@gmail.com>, twitter: @chrisyipw
 " URL:  http://www.vim.org/scripts/script.php?script_id=3220
 " GIT:  http://github.com/ChrisYis/Better-CSS-Syntax-for-Vim
-" Last Update:  2011/11/29
+" Last Update:  2012/5/29
 " Full CSS2, most of HTML5 & CSS3 properties (include prefix like -moz-) supported
 
 " Quit when a syntax file was already loaded
