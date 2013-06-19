@@ -239,5 +239,6 @@ HLink cssURL String
 
 delcommand HLink
 
+let b:current_syntax = "css"
 let g:BetterCSSSyntaxforVim = "1"
 syn sync minlines=10
